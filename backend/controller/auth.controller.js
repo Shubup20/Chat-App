@@ -80,4 +80,14 @@ export const login = async (req, res, next) => {
 };
 
 // logout controller
-export const logout = (req, res) => {};
+export const logout = async (req, res, next) => {
+  try {
+    res.clearCookie("access_token");
+
+    res.status(200).json({
+      message: "User has been logged out successfully!",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
