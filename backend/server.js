@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 
 import authRoutes from "./routes/auth.routes.js";
 import messageRoute from "./routes/message.routes.js";
+import userRoute from "./routes/user.routes.js";
 
 import cookieParser from "cookie-parser";
 
@@ -33,6 +34,7 @@ app.get("/", (req, res) => {
 // import routes
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoute);
+app.use("/api/users", userRoute);
 
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
