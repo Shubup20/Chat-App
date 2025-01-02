@@ -7,6 +7,7 @@ import messageRoute from "./routes/message.routes.js";
 import userRoute from "./routes/user.routes.js";
 
 import cookieParser from "cookie-parser";
+import { server, app } from "./socket/socket.js";
 
 dotenv.config();
 
@@ -18,8 +19,6 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-
-const app = express();
 
 const PORT = process.env.PORT || 3000;
 
@@ -36,7 +35,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoute);
 app.use("/api/users", userRoute);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
 });
 
