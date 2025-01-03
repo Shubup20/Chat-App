@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 const GenderCheckbox = ({ onCheckboxChange, selectedGender }) => {
   return (
-    <div className="flex m-3">
+    <div className="flex">
       <div className="form-control">
         <label
           className={`label gap-2 cursor-pointer ${
@@ -9,10 +9,10 @@ const GenderCheckbox = ({ onCheckboxChange, selectedGender }) => {
           }`}
         >
           <span className="label-text">Male</span>
+
           <input
-            type="radio"
-            name="gender"
-            className="radio border-slate-900 "
+            type="checkbox"
+            className="checkbox border-slate-900"
             checked={selectedGender === "male"}
             onChange={() => onCheckboxChange("male")}
           />
@@ -26,10 +26,10 @@ const GenderCheckbox = ({ onCheckboxChange, selectedGender }) => {
           }`}
         >
           <span className="label-text">Female</span>
+
           <input
-            type="radio"
-            name="gender"
-            className="radio border-slate-900"
+            type="checkbox"
+            className="checkbox border-slate-900"
             checked={selectedGender === "female"}
             onChange={() => onCheckboxChange("female")}
           />

@@ -1,14 +1,14 @@
-import { useState } from "react"
-import useConversation from "../zustand/useConversation"
-import toast from "react-hot-toast"
+import { useState } from "react";
+import useConversation from "../zustand/useConversation";
+import toast from "react-hot-toast";
 
 const useSendMessage = () => {
-  const [loading, setLoading] = useState(false)
-  const { messages, setMessages, selectedConversation } = useConversation()
+  const [loading, setLoading] = useState(false);
+  const { messages, setMessages, selectedConversation } = useConversation();
 
   const sendMessage = async (message) => {
     try {
-      setLoading(true)
+      setLoading(true);
 
       const res = await fetch(
         `/api/messages/send/${selectedConversation._id}`,
@@ -19,23 +19,23 @@ const useSendMessage = () => {
           },
           body: JSON.stringify({ message }),
         }
-      )
+      );
 
-      const data = await res.json()
+      const data = await res.json();
 
       if (data.error) {
-        throw new Error(data.error)
+        throw new Error(data.error);
       }
 
-      setMessages([...messages, data])
+      setMessages([...messages, data]);
     } catch (error) {
-      toast.error(error.message)
+      toast.error(error.message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  return { sendMessage, loading }
-}
+  return { sendMessage, loading };
+};
 
-export default useSendMessage
+export default useSendMessage;

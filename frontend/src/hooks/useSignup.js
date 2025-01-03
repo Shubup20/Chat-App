@@ -10,12 +10,12 @@ const handleInputErrors = ({
   gender,
 }) => {
   if (!username || !email || !password || !confirmPassword || !gender) {
-    toast.error("Please fill all the field");
+    toast.error("Please fill all the fields");
     return true;
   }
 
   if (password !== confirmPassword) {
-    toast.error("Password don't match");
+    toast.error("Password do not match");
     return true;
   }
 
@@ -24,7 +24,6 @@ const handleInputErrors = ({
 
 const useSignup = () => {
   const [loading, setLoading] = useState(false);
-
   const { setAuthUser } = useAuthContext();
 
   const signup = async ({
@@ -48,6 +47,7 @@ const useSignup = () => {
 
     try {
       setLoading(true);
+
       const res = await fetch("/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -66,9 +66,10 @@ const useSignup = () => {
         throw new Error(data.error);
       }
 
-      // console.log(data);
+      //   console.log(data)
 
       localStorage.setItem("user", JSON.stringify(data));
+
       setAuthUser(data);
     } catch (error) {
       toast.error(error.message);
@@ -76,6 +77,7 @@ const useSignup = () => {
       setLoading(false);
     }
   };
+
   return { loading, signup };
 };
 

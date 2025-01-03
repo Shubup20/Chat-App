@@ -3,7 +3,7 @@ import useConversation from "../zustand/useConversation";
 import toast from "react-hot-toast";
 
 const useGetMessages = () => {
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
   const { messages, setMessages, selectedConversation } = useConversation();
 
   useEffect(() => {
@@ -15,9 +15,7 @@ const useGetMessages = () => {
 
         const data = await res.json();
 
-        if (data.error) {
-          throw new Error(data.error);
-        }
+        if (data.error) throw new Error(data.error);
 
         setMessages(data);
       } catch (error) {

@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 // import userAvatar from "../../assets/user.png";
 import { useAuthContext } from "../../context/AuthContext";
-import { formateTime } from "../../utils/formateTime";
 import useConversation from "../../zustand/useConversation";
+import { formatTime } from "../../utils/formatTime";
 
 const Message = ({ message }) => {
-  // console.log(message);
+  // console.log(message)
   const { authUser } = useAuthContext();
 
   const { selectedConversation } = useConversation();
@@ -18,9 +18,9 @@ const Message = ({ message }) => {
     ? authUser.profilePic
     : selectedConversation?.profilePic;
 
-  const msgBgColor = messageFromMe ? "bg-green-500" : "bg-blue-500";
+  const msgBgColor = messageFromMe ? "bg-green-500" : "";
 
-  const formattedTime = formateTime(message.createdAt);
+  const formattedTime = formatTime(message.createdAt);
 
   return (
     <div className={`chat ${chatClassName}`}>

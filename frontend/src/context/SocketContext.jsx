@@ -1,18 +1,21 @@
-import  { useContext, useEffect, useState } from "react"
-import { createContext } from "react"
-import { useAuthContext } from "./AuthContext"
-import { io } from "socket.io-client"
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/prop-types */
+/* eslint-disable react-refresh/only-export-components */
+import { useContext, useEffect, useState } from "react";
+import { createContext } from "react";
+import { useAuthContext } from "./AuthContext";
+import { io } from "socket.io-client";
 
-export const SocketContext = createContext()
+export const SocketContext = createContext();
 
 export const useSocketContext = () => {
-  return useContext(SocketContext)
-}
+  return useContext(SocketContext);
+};
 
 export const SocketContextProvider = ({ children }) => {
-  const [socket, setSocket] = useState(null)
-  const [onlineUsers, setOnlineUsers] = useState([])
-  const { authUser } = useAuthContext()
+  const [socket, setSocket] = useState(null);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const { authUser } = useAuthContext();
 
   useEffect(() => {
     if (authUser) {
@@ -20,28 +23,28 @@ export const SocketContextProvider = ({ children }) => {
         query: {
           userId: authUser._id,
         },
-      })
+      });
 
-      setSocket(socket)
+      setSocket(socket);
 
       socket.on("getOnlineUsers", (users) => {
-        setOnlineUsers(users)
-      })
+        setOnlineUsers(users);
+      });
 
-      return () => socket.close()
+      return () => socket.close();
     } else {
       if (socket) {
-        socket.close()
-        setSocket(null)
+        socket.close();
+        setSocket(null);
       }
     }
-  }, [authUser])
+  }, [authUser]);
 
   return (
     <SocketContext.Provider value={{ socket, onlineUsers }}>
       {children}
     </SocketContext.Provider>
-  )
-}
+  );
+};
 
-
+export default SocketContext;

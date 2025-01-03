@@ -20,6 +20,7 @@ const useLogout = () => {
       if (data.error) {
         throw new Error(data.error);
       }
+
       localStorage.removeItem("user");
       setAuthUser(null);
     } catch (error) {

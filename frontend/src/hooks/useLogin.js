@@ -3,19 +3,23 @@ import { useAuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
 
 const handleInputErrors = (email, password) => {
+  //   console.log(email, password)
   if (!email || !password) {
     toast.error("Please fill all the fields");
     return true;
   }
+
   return false;
 };
 
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
+
   const { setAuthUser } = useAuthContext();
 
   const login = async (email, password) => {
     const checkError = handleInputErrors(email, password);
+
     if (checkError) {
       return;
     }
@@ -31,6 +35,7 @@ const useLogin = () => {
           password,
         }),
       });
+
       const data = await res.json();
 
       if (data.error) {
@@ -46,6 +51,7 @@ const useLogin = () => {
       setLoading(false);
     }
   };
+
   return { loading, login };
 };
 

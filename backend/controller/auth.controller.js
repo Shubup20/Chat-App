@@ -3,7 +3,6 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { errorHandler } from "../utils/error.js";
 
-// signup controller
 export const signup = async (req, res, next) => {
   const { username, email, password, confirmPassword, gender } = req.body;
 
@@ -16,7 +15,7 @@ export const signup = async (req, res, next) => {
   }
 
   if (password !== confirmPassword) {
-    return next(errorHandler(400, "Password not match"));
+    return next(errorHandler(400, "Password don't match"));
   }
 
   const hashedPassword = bcryptjs.hashSync(password, 10);
@@ -38,7 +37,7 @@ export const signup = async (req, res, next) => {
 
     await newUser.save();
 
-    res.cookie("acces_token", token, { httpOnly: true }).status(201).json({
+    res.cookie("access_token", token, { httpOnly: true }).status(201).json({
       _id: newUser._id,
       username: newUser.username,
       email: newUser.email,
@@ -49,7 +48,6 @@ export const signup = async (req, res, next) => {
   }
 };
 
-// login controller
 export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -57,7 +55,7 @@ export const login = async (req, res, next) => {
     const validUser = await User.findOne({ email });
 
     if (!validUser) {
-      return next(errorHandler(404, "user not found"));
+      return next(errorHandler(404, "User not found"));
     }
 
     const validPassword = bcryptjs.compareSync(password, validUser.password);
@@ -79,13 +77,12 @@ export const login = async (req, res, next) => {
   }
 };
 
-// logout controller
-export const logout = async (req, res, next) => {
+export const logout = (req, res) => {
   try {
     res.clearCookie("access_token");
 
     res.status(200).json({
-      message: "User has been logged out successfully!",
+      message: "User has been loggged out successfully!",
     });
   } catch (error) {
     next(error);
