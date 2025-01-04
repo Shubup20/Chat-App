@@ -25,15 +25,15 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
-      <div className=" w-full p-6 rounded-lg shadow-md bg-gray-200">
-        <h1 className="text-3xl font-semibold text-center text-slate-700">
+    <div className="flex flex-col items-center justify-center min-h-screen mx-auto">
+      <div className=" w-full  max-w-md p-6 rounded-lg shadow-lg bg-gray-200">
+        <h1 className="text-3xl font-semibold text-center text-slate-700 mb-2">
           Signup to
           <span className="text-blue-700"> Chat Application</span>
         </h1>
 
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className="mb-2">
             <label className="label p-2">
               <span className="text-base label-text">Username</span>
             </label>
@@ -49,7 +49,7 @@ const SignUp = () => {
             />
           </div>
 
-          <div>
+          <div className="mb-2">
             <label className="label p-2">
               <span className="text-base label-text">Email</span>
             </label>
@@ -65,7 +65,7 @@ const SignUp = () => {
             />
           </div>
 
-          <div>
+          <div className="mb-2">
             <label className="label p-2">
               <span className="text-base label-text">Password</span>
             </label>
@@ -81,7 +81,7 @@ const SignUp = () => {
             />
           </div>
 
-          <div>
+          <div className="mb-2">
             <label className="label p-2">
               <span className="text-base label-text">Confirm Password</span>
             </label>
@@ -109,7 +109,7 @@ const SignUp = () => {
             Already have an account?
           </Link>
 
-          <div>
+          <div className="mb-2">
             <button
               className="btn btn-block btn-sm mt-2 bg-blue-700 font-bold text-white"
               disabled={loading}
