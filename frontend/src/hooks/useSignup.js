@@ -66,7 +66,6 @@ const useSignup = () => {
         throw new Error(data.error);
       }
 
-      //   console.log(data)
 
       localStorage.setItem("user", JSON.stringify(data));
 
