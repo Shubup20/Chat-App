@@ -10,10 +10,10 @@ dotenv.config();
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    // console.log("Connected to MongoDB");
+    console.log("Connected to MongoDB");
   })
   .catch((err) => {
-    // console.log(err);
+    console.log(err);
   });
 
 const PORT = process.env.PORT || 3000;
@@ -35,7 +35,7 @@ app.use("/api/messages", messageRoute);
 app.use("/api/users", userRoute);
 
 server.listen(PORT, () => {
-  // console.log("Server is running on port " + PORT);
+  console.log("Server is running on port " + PORT);
 });
 
 // error handler
